@@ -129,11 +129,12 @@ public class XmlReader {
 
     public XmlReader next(Matcher<XMLEvent>... possibleEvents) throws XmlReaderException {
         try {
-            xmlEventParser.nextEvent();
-            while (!anyOf(possibleEvents).matches(getPeek()))
-                xmlEventParser.nextEvent();
-
-            return this;
+            if(getPeek() != null) {
+              xmlEventParser.nextEvent();
+              while (!anyOf(possibleEvents).matches(getPeek()) && getPeek() != null)
+                  xmlEventParser.nextEvent();
+            }
+            return this;    
         } catch (XMLStreamException e) {
             throw new XmlReaderException(e);
         }
@@ -179,9 +180,10 @@ public class XmlReader {
 
                 } else if (event.isEndElement()) {
                     count--;
+                    writer.writeEndElement();
                     if (count == 0) {
                         break;
-                    } else writer.writeEndElement();
+                    }
                 } else if (event.isCharacters()) {
                     writer.writeCharacters(event.asCharacters().getData());
                 }
