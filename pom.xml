@@ -10,7 +10,7 @@
     <groupId>org.lockss</groupId>
     <artifactId>com-lyncode-xml-io</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.3-p3-SNAPSHOT</version>
+    <version>1.0.3-p3</version>
     <name>org.lockss:com-lyncode-xml-io</name>
     <description>LOCKSS version of com.lyncode:xml-io ()XML IO Commons)</description>
 
