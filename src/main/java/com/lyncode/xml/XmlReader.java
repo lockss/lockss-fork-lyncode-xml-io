@@ -46,6 +46,10 @@ public class XmlReader {
     private static final XMLInputFactory XML_INPUT_FACTORY = XMLInputFactory2.newFactory();
     private final XMLEventReader xmlEventParser;
 
+    static {
+        XML_INPUT_FACTORY.setProperty(XMLInputFactory.IS_COALESCING, true);
+    }
+
     public XmlReader(InputStream stream) throws XmlReaderException {
         try {
             this.xmlEventParser = XML_INPUT_FACTORY.createXMLEventReader(stream);
